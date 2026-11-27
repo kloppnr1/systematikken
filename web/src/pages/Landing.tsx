@@ -96,7 +96,7 @@ export function Landing() {
           <h2 id="record-h">Bygget på 10 års erfaring</h2>
           <p>
             I 10 år har private daginstitutioner brugt Tid til Børn, som Systematikken afløser.
-            Systematikken er skrevet helt forfra på den erfaring.
+            De største har over 120 børn. Systematikken er skrevet helt forfra på den erfaring.
           </p>
         </div>
         <dl className="record-stats">
