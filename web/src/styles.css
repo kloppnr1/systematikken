@@ -240,6 +240,8 @@ th.r, td.r { text-align: right; }
 .faq details { border-bottom: 1.5px solid var(--line-soft); padding: .9rem 0; }
 .faq summary { font-weight: 700; }
 .faq details p { margin: .5rem 0 0; color: var(--muted); }
+.contact p { margin: 0 1.25rem .5rem; color: var(--muted); }
+.contact-list { list-style: none; margin: 0; padding: 0 1.25rem 1.25rem; display: flex; gap: .5rem 1.5rem; flex-wrap: wrap; font-size: 1.05rem; }
 .landing-foot { display: flex; gap: 1.5rem; flex-wrap: wrap; color: var(--muted); font-size: .9rem; border-top: 1.5px solid var(--line-soft); padding-top: 1.25rem; }
 @media (prefers-color-scheme: dark) { .hero-art { mix-blend-mode: normal; border-radius: 16px; opacity: .92; } }
 @media (max-width: 900px) {

@@ -40,7 +40,7 @@ const steps = [
 
 const faq = [
   ["Hvad koster det?", "Systematikken koster ingenting. Ikke gratis i 30 dage, men gratis, og det bliver ved med at være det. Gebyrerne for Betalingsservice betaler I som i dag."],
-  ["Vi bruger Tid til Børn i dag. Hvordan skifter vi?", "Sig til, så flytter vi jeres data over for jer. Det er også gratis."],
+  ["Vi bruger Tid til Børn i dag. Hvordan skifter vi?", "Skriv eller ring (se Kontakt nederst), så flytter vi jeres data over for jer. Det er også gratis."],
   ["Hvor ligger vores data?", "I EU. Hver institution ser kun sine egne data. Når en familie er afvist eller fjernet fra ventelisten, slettes deres oplysninger automatisk efter det antal måneder, I vælger."],
   ["Sender systemet mails til forældrene?", "Nej. Tilbud og påmindelser bliver skrevet for jer, og I sender dem fra jeres egen mail eller telefon. Opkrævningen går gennem Betalingsservice."],
   ["Hvad med CPR-numre?", "Dem gemmer vi ikke. Opkrævningen bruger et betalingsnummer pr. barn."],
@@ -140,6 +140,15 @@ export function Landing() {
             <p>{a}</p>
           </details>
         ))}
+      </section>
+
+      <section className="panel soft contact" aria-labelledby="contact-h">
+        <div className="panel-h"><h2 id="contact-h">Kontakt</h2></div>
+        <p>Spørgsmål, eller vil I flytte fra Tid til Børn? Skriv eller ring til Martin.</p>
+        <ul className="contact-list">
+          <li><a href="mailto:martin@kloppconsulting.dk">martin@kloppconsulting.dk</a></li>
+          <li><a href="tel:+4553687494">+45 53 68 74 94</a></li>
+        </ul>
       </section>
 
       <footer className="landing-foot">
