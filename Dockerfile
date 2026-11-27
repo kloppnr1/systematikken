@@ -1,6 +1,6 @@
 # One image: the React app built into the API's wwwroot, served by ASP.NET Core.
 
-FROM node:22-alpine AS web
+FROM node:26-alpine AS web
 WORKDIR /src/web
 COPY web/package.json web/package-lock.json ./
 RUN npm ci
