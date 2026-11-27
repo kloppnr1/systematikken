@@ -238,3 +238,6 @@ th.r, td.r { text-align: right; }
   .hero h1 { font-size: 2.1rem; }
   .landing-top .brand-logo { height: 36px; }
 }
+
+.logout { border: 0; background: none; cursor: pointer; font: inherit; }
+

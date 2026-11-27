@@ -33,6 +33,11 @@ export function Layout() {
     return location.pathname === "/" ? <Landing /> : <Navigate to={`/login?returnUrl=${encodeURIComponent(location.pathname)}`} replace />;
   if (!me.data.institution) return <Navigate to="/start" replace />;
 
+  const logout = async () => {
+    await api.post("/auth/logout");
+    window.location.href = "/";
+  };
+
   const search = (
     <form
       className="search"
@@ -63,6 +68,7 @@ export function Layout() {
           </nav>
           {search}
           <NavLink className="settings" to="/indstillinger">Indstillinger</NavLink>
+          <button className="settings logout" onClick={logout}>Log ud</button>
           <button className="menu-button" aria-expanded={open} aria-controls="phone-menu" onClick={() => setOpen(!open)}>
             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" aria-hidden="true">
               {open ? <path d="M6 6l12 12M18 6L6 18" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
@@ -78,15 +84,7 @@ export function Layout() {
             ))}
             <NavLink to="/opkraevning/betalinger">Indlæs betalinger</NavLink>
             <NavLink to="/indstillinger">Indstillinger</NavLink>
-            <button
-              className="btn link"
-              onClick={async () => {
-                await api.post("/auth/logout");
-                window.location.href = "/login";
-              }}
-            >
-              Log ud
-            </button>
+            <button className="btn link" onClick={logout}>Log ud</button>
           </nav>
         )}
       </header>
