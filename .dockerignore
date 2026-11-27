@@ -1,0 +1,9 @@
+**/bin
+**/obj
+**/node_modules
+**/App_Data
+src/Systematikken.Api/wwwroot
+.git
+.vs
+.idea
+tests

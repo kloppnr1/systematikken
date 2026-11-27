@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Systematikken.Api/Systematikken.Api.csproj" />
+    <Project Path="src/Systematikken.Billing/Systematikken.Billing.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Systematikken.Api.Tests/Systematikken.Api.Tests.csproj" />
+    <Project Path="tests/Systematikken.Billing.Tests/Systematikken.Billing.Tests.csproj" />
+  </Folder>
+</Solution>

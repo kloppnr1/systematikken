@@ -1,0 +1,11 @@
+bin/
+obj/
+.vs/
+.idea/
+*.user
+.env
+appsettings.*.local.json
+App_Data/
+node_modules/
+web/dist/
+src/Systematikken.Api/wwwroot/

@@ -1,0 +1,53 @@
+#cloud-config
+# Paste as "Cloud config" when creating the server in Hetzner Cloud (Ubuntu 26.04).
+# Gives a server that patches itself, reboots at night if a patch needs it, and only opens SSH, HTTP and HTTPS.
+# The first key is Martin's own, the second is the one GitHub Actions deploys with (secret DEPLOY_SSH_KEY).
+
+users:
+  - name: deploy
+    shell: /bin/bash
+    sudo: "ALL=(ALL) NOPASSWD:ALL"
+    ssh_authorized_keys:
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGxj9kc3AsmxuuedgE/T3lVeixcVjVunPoRxsoyCl8A7 martin
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF0I9Sk1tVOvNy2Qr6sb8iSWCRKNVmaCZHqyXkQ/4eEY systematikken-deploy
+
+package_update: true
+package_upgrade: true
+packages:
+  - docker.io
+  - docker-compose-v2
+  - unattended-upgrades
+  - ufw
+  - rsync
+
+write_files:
+  - path: /etc/apt/apt.conf.d/52systematikken-upgrades
+    content: |
+      Unattended-Upgrade::Automatic-Reboot "true";
+      Unattended-Upgrade::Automatic-Reboot-Time "04:00";
+      Unattended-Upgrade::Remove-Unused-Dependencies "true";
+  - path: /etc/apt/apt.conf.d/20auto-upgrades
+    content: |
+      APT::Periodic::Update-Package-Lists "1";
+      APT::Periodic::Unattended-Upgrade "1";
+  - path: /etc/ssh/sshd_config.d/10-hardening.conf
+    content: |
+      PasswordAuthentication no
+      PermitRootLogin no
+
+runcmd:
+  - ufw default deny incoming
+  - ufw allow 22/tcp
+  - ufw allow 80/tcp
+  - ufw allow 443
+  - ufw --force enable
+  - systemctl enable --now docker
+  - usermod -aG docker deploy   # the docker group only exists once the package is installed
+  # The SSH keys picked in the Hetzner console land on root, which cannot log in. Give them to deploy too,
+  # so every machine Martin works from (this PC, MINI-JOE) gets in without editing this file.
+  - cat /root/.ssh/authorized_keys >> /home/deploy/.ssh/authorized_keys
+  - sort -u -o /home/deploy/.ssh/authorized_keys /home/deploy/.ssh/authorized_keys
+  - mkdir -p /opt/systematikken/data /opt/systematikken/demo-data
+  - chown -R 1654:1654 /opt/systematikken/data /opt/systematikken/demo-data   # the "app" user inside the .NET image
+  - chown deploy:deploy /opt/systematikken
+  - systemctl restart ssh

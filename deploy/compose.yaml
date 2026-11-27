@@ -1,0 +1,39 @@
+# Runs on the Hetzner server in /opt/systematikken. See docs/operations.md.
+services:
+  app:
+    image: ghcr.io/kloppnr1/systematikken:latest
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - ./data:/data
+
+  # The same image with made-up data that is rebuilt every night. Anyone can log in with one button.
+  demo:
+    image: ghcr.io/kloppnr1/systematikken:latest
+    restart: unless-stopped
+    environment:
+      Demo__Enabled: "true"
+    volumes:
+      - ./demo-data:/data
+
+  caddy:
+    image: caddy:2
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    environment:
+      DOMAIN: ${DOMAIN}
+      DEMO_DOMAIN: ${DEMO_DOMAIN}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - app
+      - demo
+
+volumes:
+  caddy_data:
+  caddy_config:

@@ -1,0 +1,24 @@
+# Caddy gets and renews the HTTPS certificates on its own.
+(headers) {
+	encode zstd gzip
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options nosniff
+		Referrer-Policy strict-origin-when-cross-origin
+		X-Frame-Options DENY
+		Permissions-Policy "camera=(), microphone=(), geolocation=()"
+		-Server
+	}
+}
+
+{$DOMAIN} {
+	import headers
+	reverse_proxy app:8080
+}
+
+# The demo with made-up data.
+{$DEMO_DOMAIN} {
+	import headers
+	header X-Robots-Tag "noindex"
+	reverse_proxy demo:8080
+}
