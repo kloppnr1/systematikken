@@ -170,15 +170,24 @@ export function Avatar({ name }: { name: string }) {
   return <span className={`avatar c${hue}`} aria-hidden="true">{initials}</span>;
 }
 
-/** The hand-drawn puzzle from systematikken.dk. For empty screens and finished months. */
-export function Puzzle({ size = 96 }: { size?: number }) {
-  return <img className="puzzle" src={puzzleImg} width={Math.round(size * 1.4)} alt="" />;
+/**
+ * One puzzle piece, the motif from systematikken.dk and the favicon. Used small, where the full
+ * "OVERBLIK" drawing would be too small to read. The full drawing is for the front page.
+ */
+export function Puzzle({ size = 56 }: { size?: number }) {
+  return (
+    <svg className="piece" width={size} height={size} viewBox="0 0 64 64" aria-hidden="true">
+      <path d="M6 18h14c0-5 4-9 9-9s9 4 9 9h14v13c5 0 9 4 9 9s-4 9-9 9v11H6z" fill="var(--sage)" stroke="currentColor" strokeWidth={2.5} strokeLinejoin="round" />
+    </svg>
+  );
 }
+
+export { puzzleImg };
 
 export function Empty({ children }: { children: ReactNode }) {
   return (
     <div className="empty">
-      <Puzzle size={84} />
+      <Puzzle size={52} />
       <div>{children}</div>
     </div>
   );

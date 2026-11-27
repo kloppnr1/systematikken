@@ -57,7 +57,7 @@ export function Todo() {
         <section className="panel soft" aria-labelledby="setup">
           <div className="panel-h" style={{ alignItems: "center" }}>
             <div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
-              <Puzzle size={72} />
+              <Puzzle size={52} />
               <div>
                 <h2 id="setup">Kom godt i gang</h2>
                 <span className="hint">{q.data.setup.length} brikker mangler, før alt er på plads.</span>

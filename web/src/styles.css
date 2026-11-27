@@ -241,3 +241,6 @@ th.r, td.r { text-align: right; }
 
 .logout { border: 0; background: none; cursor: pointer; font: inherit; }
 
+
+.piece { flex: none; color: var(--fg); display: block; }
+

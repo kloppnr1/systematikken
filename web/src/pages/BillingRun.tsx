@@ -30,7 +30,7 @@ export function BillingRun() {
       </ol>
 
       <section className="panel done-hero">
-        <Puzzle size={96} />
+        <Puzzle size={64} />
         <div>
         <h2>{fmtMonth(r.month)} er godkendt</h2>
         <p style={{ margin: 0 }}>
