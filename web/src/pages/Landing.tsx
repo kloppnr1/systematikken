@@ -39,7 +39,7 @@ const steps = [
 ] as const;
 
 const faq = [
-  ["Hvad koster det?", "Ingenting. Ikke gratis i 30 dage, men gratis. Og det bliver ved med at være det."],
+  ["Hvad koster det?", "Systematikken koster ingenting. Ikke gratis i 30 dage, men gratis, og det bliver ved med at være det. Gebyrerne for Betalingsservice betaler I som i dag."],
   ["Vi bruger Tid til Børn i dag. Hvordan skifter vi?", "Sig til, så flytter vi jeres data over for jer. Det er også gratis."],
   ["Hvor ligger vores data?", "I EU. Hver institution ser kun sine egne data. Når en familie er afvist eller fjernet fra ventelisten, slettes deres oplysninger automatisk efter det antal måneder, I vælger."],
   ["Sender systemet mails til forældrene?", "Nej. Tilbud og påmindelser bliver skrevet for jer, og I sender dem fra jeres egen mail eller telefon. Opkrævningen går gennem Betalingsservice."],
