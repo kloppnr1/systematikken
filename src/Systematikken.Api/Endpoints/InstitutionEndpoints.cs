@@ -2,6 +2,7 @@ using System.Globalization;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Systematikken.Api.Data;
+using Systematikken.Api.Services;
 
 namespace Systematikken.Api.Endpoints;
 
@@ -139,6 +140,10 @@ public static class InstitutionEndpoints
             await db.SaveChangesAsync();
             return Results.Ok(ToDto(i));
         });
+
+        // All the institution's data in one ZIP. The data belongs to the institution.
+        g.MapGet("/export", async (ExportService export, TimeProvider clock) =>
+            Results.File(await export.CreateAsync(), "application/zip", $"systematikken-data-{clock.GetLocalNow():yyyy-MM-dd}.zip"));
 
         g.MapGet("/staff", async (AppDb db, HttpContext ctx, TimeProvider clock) =>
         {

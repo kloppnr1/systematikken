@@ -84,6 +84,48 @@ public class FlowTests : IDisposable
     }
 
     [Fact]
+    public async Task ExportHoldsOnlyTheInstitutionsOwnData()
+    {
+        var a = await _f.SignedIn("a@a.dk", "Huset A");
+        var b = await _f.SignedIn("b@b.dk", "Huset B");
+        await a.Post("/api/children", new
+        {
+            firstName = "Alma", lastName = "Krogh", dateOfBirth = "2024-05-01", startDate = FirstOf(), isPartTime = false,
+            payer = new { name = "Sofie Krogh; mor", phone = "+45 12 34 56 78", address = "Vej 1", postCode = "8000", city = "Aarhus" },
+        });
+        var slug = (await a.Get("/api/me")).GetProperty("institution").GetProperty("slug").GetString();
+        await _f.Browser().Post($"/api/public/institutions/{slug}/signup", new
+        {
+            childName = "=HYPERLINK(\"x\")", dateOfBirth = DateTime.Today.AddYears(-1).ToString("yyyy-MM-dd"), desiredStart = FirstOf(2),
+            hasSibling = false, parent1Name = "Ida Holm", parent1Email = "ida@holm.dk", parent1Phone = "12345678",
+            address = "Mælkevej 3", postCode = "8000", city = "Aarhus", consent = true,
+        });
+
+        var r = await a.GetAsync("/api/export");
+        r.EnsureSuccessStatusCode();
+        Assert.Equal("application/zip", r.Content.Headers.ContentType!.MediaType);
+        using var zip = new System.IO.Compression.ZipArchive(await r.Content.ReadAsStreamAsync());
+        string Read(string name) => new StreamReader(zip.GetEntry(name)!.Open(), Encoding.UTF8).ReadToEnd();
+
+        Assert.Contains("Huset A", Read("institution.csv"));
+        Assert.Contains("1;Alma;Krogh;2024-05-01", Read("boern.csv"));
+        var parents = Read("foraeldre.csv");
+        Assert.Contains("\"Sofie Krogh; mor\"", parents);
+        Assert.Contains(";+45 12 34 56 78;", parents);
+        var waiting = Read("venteliste.csv");
+        Assert.Contains("\"'=HYPERLINK(\"\"x\"\")\"", waiting);
+        Assert.Contains("Venter", waiting);
+        Assert.Contains("a@a.dk", Read("kolleger.csv"));
+
+        var other = await b.GetAsync("/api/export");
+        using var otherZip = new System.IO.Compression.ZipArchive(await other.Content.ReadAsStreamAsync());
+        var otherChildren = new StreamReader(otherZip.GetEntry("boern.csv")!.Open()).ReadToEnd();
+        Assert.DoesNotContain("Alma", otherChildren);
+        Assert.DoesNotContain("Huset A", new StreamReader(otherZip.GetEntry("institution.csv")!.Open()).ReadToEnd());
+        Assert.DoesNotContain("a@a.dk", new StreamReader(otherZip.GetEntry("kolleger.csv")!.Open()).ReadToEnd());
+    }
+
+    [Fact]
     public async Task InvitedColleagueJoins()
     {
         var a = await _f.SignedIn("leder@a.dk", "Huset A");

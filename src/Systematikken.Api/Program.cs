@@ -69,6 +69,7 @@ builder.Services.AddSingleton(TimeProvider.System);
 builder.Services.AddScoped<BillingService>();
 builder.Services.AddScoped<PaymentService>();
 builder.Services.AddScoped<ChildService>();
+builder.Services.AddScoped<ExportService>();
 builder.Services.AddSingleton<RetentionService>();
 builder.Services.AddHostedService(sp => sp.GetRequiredService<RetentionService>());
 builder.Services.AddSingleton<BackupService>();

@@ -39,6 +39,7 @@ const faq = [
   ["Vi bruger Tid til Børn i dag. Hvordan skifter vi?", "Kontakt os, så flytter vi jeres data gratis."],
   ["Hvor ligger vores data?", "I EU. Hver institution ser kun sine egne data."],
   ["Hvad med CPR-numre?", "Dem gemmer vi ikke."],
+  ["Hvem ejer data?", "I gør. I kan altid hente alle jeres data under Indstillinger."],
   ["Hvorfor open source?", "Så I ikke er afhængige af én leverandør. Alle kan køre systemet videre."],
 ] as const;
 

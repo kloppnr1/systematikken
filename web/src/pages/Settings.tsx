@@ -131,6 +131,15 @@ export function Settings() {
       </form>
 
       <StaffPanel />
+
+      <Panel title="Jeres data" id="data">
+        <div className="panel-b">
+          <p className="hint" style={{ marginTop: 0 }}>
+            Data er jeres. Hent alt som regneark: børn, forældre, venteliste, opkrævninger, betalinger og indstillinger.
+          </p>
+          <a className="btn" href="/api/export" download>Hent alle jeres data</a>
+        </div>
+      </Panel>
     </div>
   );
 }
