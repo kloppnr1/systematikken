@@ -221,6 +221,13 @@ th.r, td.r { text-align: right; }
 .lead { font-size: 1.2rem; color: var(--muted); max-width: 34rem; margin-bottom: 1.5rem; }
 .hero .inline { margin-bottom: .75rem; }
 .hero-art { width: 100%; height: auto; mix-blend-mode: multiply; }
+.record { background: var(--tint); border-radius: var(--r); padding: 1.5rem; display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 1.5rem; align-items: center; margin-bottom: 2rem; }
+.record h2 { font-size: 1.35rem; margin-bottom: .4rem; }
+.record-text p { margin: 0; color: var(--muted); }
+.record-stats { margin: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; }
+.record-stats div { display: flex; flex-direction: column-reverse; justify-content: flex-end; }
+.record-stats dd { margin: 0; font-size: 1.75rem; font-weight: 800; line-height: 1.15; color: var(--accent-strong); white-space: nowrap; }
+.record-stats dt { color: var(--muted); font-size: .9rem; }
 .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1rem; margin-bottom: 2rem; }
 .feature { border: 1.5px solid var(--line); border-radius: var(--r); padding: 1.25rem; display: flex; flex-direction: column; gap: .6rem; }
 .feature h2 { font-size: 1.1rem; }
@@ -238,6 +245,9 @@ th.r, td.r { text-align: right; }
 @media (max-width: 900px) {
   .hero { grid-template-columns: minmax(0, 1fr); padding-top: 1rem; gap: 1.5rem; }
   .hero h1 { font-size: 2.1rem; }
+  .record { grid-template-columns: minmax(0, 1fr); padding: 1.25rem; }
+  .record-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .record-stats dd { font-size: 1.5rem; }
   .landing-top .brand-logo { height: 36px; }
 }
 

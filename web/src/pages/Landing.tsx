@@ -25,6 +25,13 @@ const features = [
   },
 ];
 
+const record = [
+  ["7", "institutioner"],
+  ["1.869", "børn"],
+  ["4.000+", "års børnepasning"],
+  ["135+ mio.", "kr. opkrævet via Betalingsservice"],
+] as const;
+
 const steps = [
   ["Log ind", "med jeres Google- eller Microsoft-konto. Vi gemmer ingen adgangskoder."],
   ["Opret institutionen", "og skriv jeres priser og Betalingsservice-aftale ind."],
@@ -32,7 +39,7 @@ const steps = [
 ] as const;
 
 const faq = [
-  ["Hvad koster det?", "Ingenting. Systematikken er gratis og bliver ved med at være det."],
+  ["Hvad koster det?", "Ingenting. Ikke gratis i 30 dage, men gratis. Og det bliver ved med at være det."],
   ["Hvor ligger vores data?", "På en server i EU (Helsinki, Finland). Hver institution ser kun sine egne data, og venteliste-oplysninger slettes automatisk efter den tid, I vælger."],
   ["Sender systemet mails til forældrene?", "Nej. Tilbud og påmindelser bliver skrevet for jer, og I sender dem fra jeres egen mail eller telefon. Opkrævningen går gennem Betalingsservice."],
   ["Hvad med CPR-numre?", "Dem gemmer vi ikke. Opkrævningen bruger et betalingsnummer pr. barn."],
@@ -82,6 +89,24 @@ export function Landing() {
           <p className="hint">Demoen har en opdigtet institution. Ingen login, ingen tilmelding.</p>
         </div>
         <img className="hero-art" src={puzzle} alt="" />
+      </section>
+
+      <section className="record" aria-labelledby="record-h">
+        <div className="record-text">
+          <h2 id="record-h">Bygget på 10 års erfaring</h2>
+          <p>
+            I 10 år har private daginstitutioner brugt Tid til Børn, som Systematikken afløser.
+            Systematikken er skrevet helt forfra på den erfaring.
+          </p>
+        </div>
+        <dl className="record-stats">
+          {record.map(([n, label]) => (
+            <div key={label}>
+              <dt>{label}</dt>
+              <dd>{n}</dd>
+            </div>
+          ))}
+        </dl>
       </section>
 
       <section className="features" aria-label="Det kan Systematikken">
