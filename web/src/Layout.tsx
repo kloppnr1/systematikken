@@ -3,6 +3,7 @@ import { NavLink, Navigate, Outlet, useLocation, useNavigate } from "react-route
 import { api } from "./api";
 import { useMe } from "./session";
 import { Loading } from "./ui";
+import { Landing } from "./pages/Landing";
 import logo from "./assets/logo.png";
 
 const tabs = [
@@ -28,7 +29,8 @@ export function Layout() {
   useEffect(() => setOpen(false), [location.pathname, location.search]);
 
   if (me.isPending) return <main className="wrap"><Loading /></main>;
-  if (!me.data?.signedIn) return <Navigate to={`/login?returnUrl=${encodeURIComponent(location.pathname)}`} replace />;
+  if (!me.data?.signedIn)
+    return location.pathname === "/" ? <Landing /> : <Navigate to={`/login?returnUrl=${encodeURIComponent(location.pathname)}`} replace />;
   if (!me.data.institution) return <Navigate to="/start" replace />;
 
   const search = (

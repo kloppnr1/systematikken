@@ -209,3 +209,32 @@ th.r, td.r { text-align: right; }
   .toast { animation: rise .18s ease-out; }
   @keyframes rise { from { transform: translate(-50%, 8px); opacity: 0; } }
 }
+
+/* Front page for people who are not logged in */
+.landing { max-width: 1120px; margin: 0 auto; padding: 1rem max(16px, env(safe-area-inset-right)) 3rem max(16px, env(safe-area-inset-left)); }
+.landing-top { display: flex; justify-content: space-between; align-items: center; padding: .5rem 0 1rem; }
+.landing-top .brand-logo { height: 48px; }
+.hero { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 2.5rem; align-items: center; padding: 2.5rem 0 3rem; }
+.hero h1 { font-size: 2.9rem; line-height: 1.1; display: block; background: none; padding: 0; margin-bottom: 1rem; }
+.lead { font-size: 1.2rem; color: var(--muted); max-width: 34rem; margin-bottom: 1.5rem; }
+.hero .inline { margin-bottom: .75rem; }
+.hero-art { width: 100%; height: auto; mix-blend-mode: multiply; }
+.features { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+.feature { border: 1.5px solid var(--line); border-radius: var(--r); padding: 1.25rem; display: flex; flex-direction: column; gap: .6rem; }
+.feature h2 { font-size: 1.1rem; }
+.feature p { margin: 0; color: var(--muted); }
+.how-steps { list-style: none; margin: 0; padding: 0 1.25rem 1.25rem; display: grid; gap: .9rem; }
+.how-steps li { display: flex; gap: .9rem; align-items: baseline; }
+.how-n { width: 1.9rem; height: 1.9rem; border-radius: 50%; background: var(--sage); color: var(--accent-strong); display: inline-grid; place-items: center; font-weight: 800; flex: none; }
+.faq { margin: 2rem 0; max-width: 46rem; }
+.faq h2 { font-size: 1.5rem; margin-bottom: .5rem; }
+.faq details { border-bottom: 1.5px solid var(--line-soft); padding: .9rem 0; }
+.faq summary { font-weight: 700; }
+.faq details p { margin: .5rem 0 0; color: var(--muted); }
+.landing-foot { display: flex; gap: 1.5rem; flex-wrap: wrap; color: var(--muted); font-size: .9rem; border-top: 1.5px solid var(--line-soft); padding-top: 1.25rem; }
+@media (prefers-color-scheme: dark) { .hero-art { mix-blend-mode: normal; border-radius: 16px; opacity: .92; } }
+@media (max-width: 900px) {
+  .hero { grid-template-columns: minmax(0, 1fr); padding-top: 1rem; gap: 1.5rem; }
+  .hero h1 { font-size: 2.1rem; }
+  .landing-top .brand-logo { height: 36px; }
+}
