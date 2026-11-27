@@ -3,7 +3,6 @@ import { NavLink, Navigate, Outlet, useLocation, useNavigate } from "react-route
 import { api } from "./api";
 import { useMe } from "./session";
 import { Loading } from "./ui";
-import { Landing } from "./pages/Landing";
 import logo from "./assets/logo.png";
 
 const tabs = [
@@ -30,7 +29,7 @@ export function Layout() {
 
   if (me.isPending) return <main className="wrap"><Loading /></main>;
   if (!me.data?.signedIn)
-    return location.pathname === "/" ? <Landing /> : <Navigate to={`/login?returnUrl=${encodeURIComponent(location.pathname)}`} replace />;
+    return <Navigate to={location.pathname === "/" ? "/login" : `/login?returnUrl=${encodeURIComponent(location.pathname)}`} replace />;
   if (!me.data.institution) return <Navigate to="/start" replace />;
 
   const logout = async () => {

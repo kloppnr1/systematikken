@@ -23,7 +23,7 @@ One Hetzner server runs everything: the app container and Caddy in front of it. 
 ## First setup
 
 1. Create a Hetzner Cloud server, Ubuntu 26.04, CX23, Helsinki. Paste `deploy/cloud-init.yaml` as Cloud config. It already holds Martin's SSH key and the deploy key.
-2. Point the domain's A record at the server.
+2. Point the A records for `systematikken.dk`, `www`, `app` and `demo` at the server. The front page is on `systematikken.dk`, the app on `app.`, the demo on `demo.`.
 3. Register the Google and Microsoft logins (see `deploy/env.example` for where and which redirect address).
 4. On the server: copy `deploy/env.example` to `/opt/systematikken/.env` and fill it in.
 5. Order a Hetzner Storage Box, add the deploy user's SSH key, and write `STORAGE_BOX=...` in `/opt/systematikken/backup.env`. Add the cron line from `backup-offsite.sh`.

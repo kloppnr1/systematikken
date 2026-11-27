@@ -26,6 +26,10 @@ import { More } from "./pages/More";
 import { Signup, Thanks } from "./pages/public/Signup";
 import { Answer } from "./pages/public/Answer";
 import { NotFound } from "./pages/NotFound";
+import { Landing } from "./pages/Landing";
+
+// systematikken.dk shows only the front page. "?forside" shows it on any address, for checking it locally.
+const isSite = ["systematikken.dk", "www.systematikken.dk"].includes(location.hostname) || new URLSearchParams(location.search).has("forside");
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -37,6 +41,7 @@ const queryClient = new QueryClient({
 });
 
 createRoot(document.getElementById("root")!).render(
+  isSite ? <StrictMode><Landing /></StrictMode> : (
   <StrictMode>
     <QueryClientProvider client={queryClient}>
       <ToastProvider>
@@ -68,5 +73,6 @@ createRoot(document.getElementById("root")!).render(
         </BrowserRouter>
       </ToastProvider>
     </QueryClientProvider>
-  </StrictMode>,
+  </StrictMode>
+  ),
 );

@@ -24,6 +24,7 @@ services:
       - "443:443"
       - "443:443/udp"
     environment:
+      SITE_DOMAIN: ${SITE_DOMAIN:-systematikken.dk}
       DOMAIN: ${DOMAIN}
       DEMO_DOMAIN: ${DEMO_DOMAIN}
     volumes:

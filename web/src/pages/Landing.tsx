@@ -1,7 +1,3 @@
-import { Link, useNavigate } from "react-router";
-import { useQueryClient } from "@tanstack/react-query";
-import { api } from "../api";
-import { useMe } from "../session";
 import { Tile, useTitle } from "../ui";
 import logo from "../assets/logo.png";
 import puzzle from "../assets/puzzle.png";
@@ -46,33 +42,18 @@ const faq = [
   ["Hvorfor open source?", "Så I ikke er afhængige af én leverandør. Alle kan køre systemet videre."],
 ] as const;
 
-/** The front page for people who are not logged in: what Systematikken is, the demo, and how to start. */
+const APP = "https://app.systematikken.dk";
+const DEMO = "https://demo.systematikken.dk";
+
+/** systematikken.dk: what Systematikken is, the demo, and how to start. The app itself is on app.systematikken.dk. */
 export function Landing() {
   useTitle("Gratis system til private daginstitutioner");
-  const me = useMe();
-  const qc = useQueryClient();
-  const navigate = useNavigate();
-
-  const demoButton = me.data?.demo ? (
-    <button
-      className="btn primary"
-      onClick={async () => {
-        await api.post("/auth/demo");
-        await qc.invalidateQueries();
-        navigate("/");
-      }}
-    >
-      Prøv demoen
-    </button>
-  ) : (
-    <a className="btn primary" href="https://demo.systematikken.dk">Prøv demoen</a>
-  );
 
   return (
     <div className="landing">
       <header className="landing-top">
         <img className="brand-logo" src={logo} alt="Systematikken" />
-        <Link className="btn" to="/login">Log ind</Link>
+        <a className="btn" href={`${APP}/login`}>Log ind</a>
       </header>
 
       <section className="hero">
@@ -82,8 +63,8 @@ export function Landing() {
             Venteliste, børn og forældrebetaling for private daginstitutioner. Ét sted, og gratis.
           </p>
           <div className="inline">
-            {demoButton}
-            <Link className="btn" to="/login">Kom i gang</Link>
+            <a className="btn primary" href={DEMO}>Prøv demoen</a>
+            <a className="btn" href={`${APP}/login`}>Kom i gang</a>
           </div>
           <p className="hint">Ingen login, ingen tilmelding.</p>
         </div>

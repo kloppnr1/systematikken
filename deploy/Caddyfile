@@ -11,6 +11,20 @@
 	}
 }
 
+# The front page. Only the page itself and its files are served here; every other address
+# goes to the app, so old links like systematikken.dk/login still work.
+{$SITE_DOMAIN} {
+	import headers
+	@app not path / /assets/* /favicon.svg /favicon-32.png /apple-touch-icon.png
+	redir @app https://{$DOMAIN}{uri}
+	reverse_proxy app:8080
+}
+
+www.{$SITE_DOMAIN} {
+	redir https://{$SITE_DOMAIN}{uri} permanent
+}
+
+# The app.
 {$DOMAIN} {
 	import headers
 	reverse_proxy app:8080
