@@ -14,7 +14,7 @@ COPY src/ src/
 COPY --from=web /src/src/Systematikken.Api/wwwroot src/Systematikken.Api/wwwroot
 RUN dotnet publish src/Systematikken.Api -c Release -o /app
 
-FROM mcr.microsoft.com/dotnet/aspnet:10.0
+FROM mcr.microsoft.com/dotnet/aspnet:11.0
 WORKDIR /app
 COPY --from=build /app .
 # All state lives in /data: the database, the cookie keys and the nightly backups.
