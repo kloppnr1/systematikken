@@ -41,8 +41,7 @@ const steps = [
 const faq = [
   ["Hvad koster det?", "Systematikken koster ingenting. Ikke gratis i 30 dage, men gratis, og det bliver ved med at være det. Gebyrerne for Betalingsservice betaler I som i dag."],
   ["Vi bruger Tid til Børn i dag. Hvordan skifter vi?", "Skriv eller ring (se Kontakt nederst), så flytter vi jeres data over for jer. Det er også gratis."],
-  ["Hvor ligger vores data?", "I EU. Hver institution ser kun sine egne data. Når en familie er afvist eller fjernet fra ventelisten, slettes deres oplysninger automatisk efter det antal måneder, I vælger."],
-  ["Sender systemet mails til forældrene?", "Nej. Tilbud og påmindelser bliver skrevet for jer, og I sender dem fra jeres egen mail eller telefon. Opkrævningen går gennem Betalingsservice."],
+  ["Hvor ligger vores data?", "I EU. Hver institution ser kun sine egne data."],
   ["Hvad med CPR-numre?", "Dem gemmer vi ikke. Opkrævningen bruger et betalingsnummer pr. barn."],
   ["Hvorfor open source?", "Så I ikke er afhængige af én leverandør. Koden er frit tilgængelig, så I eller en anden kan køre systemet videre, hvis vi en dag stopper. Og alle kan se præcis, hvordan den regner."],
 ] as const;
