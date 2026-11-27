@@ -168,11 +168,13 @@ th.r, td.r { text-align: right; }
 .chart text { fill: var(--muted); font-size: 11px; font-family: var(--font); }
 .chart .grid-line { stroke: var(--line-soft); }
 .chart .n { fill: var(--accent); }
-.chart .k { fill: #d9a13b; }
+.chart .k { fill: var(--kinder); }
+.chart .sel { fill: var(--selected); }
+.chart .unsel { fill: transparent; }
 .chart .wl { opacity: .35; }
 .chart .cap { stroke-width: 2; fill: none; stroke-dasharray: 5 4; }
 .chart .cap.n { stroke: var(--accent); }
-.chart .cap.k { stroke: #d9a13b; }
+.chart .cap.k { stroke: var(--kinder); }
 .chart .bar { cursor: pointer; }
 .legend { display: flex; gap: 1rem; flex-wrap: wrap; font-size: .85rem; color: var(--muted); padding: 0 1.25rem 1.1rem; align-items: center; }
 .legend i { display: inline-block; width: .8rem; height: .8rem; border-radius: 4px; margin-right: .35rem; vertical-align: -1px; }
@@ -244,3 +246,6 @@ th.r, td.r { text-align: right; }
 
 .piece { flex: none; color: var(--fg); display: block; }
 
+
+/* Chart colours for kindergarten, and the soft fill behind a selected month. */
+:root { --kinder: #d9a13b; --selected: color-mix(in srgb, var(--sage) 45%, transparent); }

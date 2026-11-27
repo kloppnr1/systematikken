@@ -45,7 +45,7 @@ export function Occupancy() {
             </div>
             <div className="legend">
               <span><i style={{ background: "var(--accent)" }} />Vuggestue</span>
-              <span><i style={{ background: "var(--second)" }} />Børnehave</span>
+              <span><i style={{ background: "var(--kinder)" }} />Børnehave</span>
               {showWaiting && <span><i style={{ background: "var(--muted)", opacity: .35 }} />Venteliste</span>}
               <span>– – Pladser</span>
               <span className="hint">Børn uden slutdato regnes med til skolestart i {monthName(q.data.schoolStartMonth)}.</span>
@@ -63,7 +63,7 @@ export function Occupancy() {
                 </thead>
                 <tbody>
                   {q.data.months.map((m) => (
-                    <tr key={m.month} onClick={() => setSelected(m.month)} style={{ cursor: "pointer", background: m.month === month?.month ? "var(--accent-soft)" : undefined }}>
+                    <tr key={m.month} onClick={() => setSelected(m.month)} style={{ cursor: "pointer", background: m.month === month?.month ? "var(--selected)" : undefined }}>
                       <td>{fmtMonth(m.month)}</td>
                       <td className="r num">{m.nursery.count}</td>
                       <td className="r num" style={{ color: m.nursery.freePlaces < 0 ? "var(--bad)" : undefined }}>{m.nursery.freePlaces}</td>
@@ -142,7 +142,7 @@ function Chart({ months, showWaiting, selected, onSelect }: { months: Month[]; s
         const label = parseDate(m.month).toLocaleDateString("da-DK", { month: "short" });
         return (
           <g key={m.month} className="bar" onClick={() => onSelect(m.month)}>
-            <rect x={left + i * slot} y={top} width={slot} height={H - top - bottom} fill={m.month === selected ? "var(--accent-soft)" : "transparent"} />
+            <rect x={left + i * slot} y={top} width={slot} height={H - top - bottom} className={m.month === selected ? "sel" : "unsel"} />
             {bar(m.nursery, "n", -bw - 1)}
             {bar(m.kindergarten, "k", 1)}
             <text x={x} y={H - 8} textAnchor="middle">{label}</text>
