@@ -43,7 +43,7 @@ const faq = [
   ["Hvor ligger vores data?", "På en server i EU (Helsinki, Finland). Hver institution ser kun sine egne data, og venteliste-oplysninger slettes automatisk efter den tid, I vælger."],
   ["Sender systemet mails til forældrene?", "Nej. Tilbud og påmindelser bliver skrevet for jer, og I sender dem fra jeres egen mail eller telefon. Opkrævningen går gennem Betalingsservice."],
   ["Hvad med CPR-numre?", "Dem gemmer vi ikke. Opkrævningen bruger et betalingsnummer pr. barn."],
-  ["Kan andre se koden?", "Ja. Systematikken er open source, så alle kan se, hvordan den regner."],
+  ["Hvorfor open source?", "Så I ikke er afhængige af én leverandør. Koden er frit tilgængelig, så I eller en anden kan køre systemet videre, hvis vi en dag stopper. Og alle kan se præcis, hvordan den regner."],
 ] as const;
 
 /** The front page for people who are not logged in: what Systematikken is, the demo, and how to start. */
