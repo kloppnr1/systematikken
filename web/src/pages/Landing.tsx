@@ -148,6 +148,7 @@ export function Landing() {
         <ul className="contact-list">
           <li><a href="mailto:martin@kloppconsulting.dk">martin@kloppconsulting.dk</a></li>
           <li><a href="tel:+4553687494">+45 53 68 74 94</a></li>
+          <li className="muted">Klopp Consulting, Mariane Thomsens Gade 36, 8000 Aarhus C</li>
         </ul>
       </section>
 
