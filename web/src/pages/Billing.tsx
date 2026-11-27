@@ -53,7 +53,7 @@ export function Billing() {
       <ol className="steps" aria-label="Trin">
         <li className={confirming ? "done" : "now"}>1 Tjek</li>
         <li className={confirming ? "now" : ""}>2 Godkend</li>
-        <li>3 Send til banken</li>
+        <li>3 Send til Betalingsservice</li>
       </ol>
 
       <div className="side">

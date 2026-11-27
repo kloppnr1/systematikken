@@ -21,7 +21,7 @@ Systematikken brings the waiting list, the children and the parents' payments to
 | | |
 |---|---|
 | **Waiting list with sign-up** | Parents sign up through a link on the institution's website. Staff see the list in order, offer a place, and parents answer yes or no through a link. |
-| **Billing through Betalingsservice** | Prices, half months, free places, sibling discounts, meal scheme and deposit are worked out for you. Approve the month, download the file, upload it in the online bank. |
+| **Billing through Betalingsservice** | Prices, half months, free places, sibling discounts, meal scheme and deposit are worked out for you. Approve the month, download the file, send it to Betalingsservice. |
 | **Payments and bookkeeping voucher** | Load the bank's payment file to see who has paid. The bookkeeper gets a voucher with the month's figures. |
 | **Places month by month** | How many nursery and kindergarten children there are, and when places free up, with children leaving for school counted in. |
 

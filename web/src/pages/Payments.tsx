@@ -43,7 +43,7 @@ export function Payments() {
             }
           }}
         >
-          <p>Log på jeres netbank, find Betalingsservice, og hent filen med betalingsoplysninger. Læg den ind her.</p>
+          <p>Hent filen med betalingsoplysninger hos Betalingsservice. Læg den ind her.</p>
           <input type="file" name="file" required aria-label="Betalingsfil" />
           {(errors.errors.file || errors.message) && <p className="error">{errors.errors.file ?? errors.message}</p>}
           <p><button className="btn primary" type="submit" disabled={busy}>{busy ? "Læser filen…" : "Indlæs"}</button></p>

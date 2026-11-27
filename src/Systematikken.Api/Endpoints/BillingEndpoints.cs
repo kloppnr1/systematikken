@@ -110,6 +110,8 @@ public static class BillingEndpoints
                 r.Id, r.Month, r.ApprovedAt, r.ApprovedBy, r.ChargeCount, r.Total, r.SerialNumber,
                 voucher = new { r.Opkraevningssum, r.Opkraevninger, r.Tilskudssum },
                 fileName = FileName(r), hasPayments,
+                deadline = Systematikken.Billing.Betalingsservice.BankDays.DeliveryDeadline(BillingMonth.Of(r.Month)),
+                paymentDay = Systematikken.Billing.Betalingsservice.BankDays.PaymentDay(BillingMonth.Of(r.Month)),
             });
         });
 

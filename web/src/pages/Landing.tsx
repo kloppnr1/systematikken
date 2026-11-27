@@ -13,7 +13,7 @@ const features = [
   },
   {
     icon: "coin" as const, tone: "sage" as const, title: "Opkrævning via Betalingsservice",
-    text: "Pris, halve måneder, friplads, søskenderabat, kostordning og depositum regnes ud for jer. Godkend måneden, hent filen, og læg den op i netbanken.",
+    text: "Pris, halve måneder, friplads, søskenderabat, kostordning og depositum regnes ud for jer. Godkend måneden, hent filen, og send den til Betalingsservice.",
   },
   {
     icon: "check" as const, tone: "sage" as const, title: "Betalinger og bogføringsbilag",

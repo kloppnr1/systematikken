@@ -7,7 +7,7 @@ import { Failed, Loading, Panel, Puzzle, useTitle } from "../ui";
 type Run = {
   id: number; month: string; approvedAt: string; approvedBy: string; chargeCount: number; total: number; serialNumber: number;
   voucher: { opkraevningssum: number; opkraevninger: number; tilskudssum: number };
-  fileName: string; hasPayments: boolean;
+  fileName: string; hasPayments: boolean; deadline: string; paymentDay: string;
 };
 
 /** An approved month: send the file to the bank, give the voucher to the bookkeeper, then read the payments back in. */
@@ -26,7 +26,7 @@ export function BillingRun() {
       <ol className="steps" aria-label="Trin">
         <li className="done">1 Tjek</li>
         <li className="done">2 Godkend</li>
-        <li className={r.hasPayments ? "done" : "now"}>3 Send til banken</li>
+        <li className={r.hasPayments ? "done" : "now"}>3 Send til Betalingsservice</li>
       </ol>
 
       <section className="panel done-hero">
@@ -41,11 +41,11 @@ export function BillingRun() {
 
       <div className="side">
         <div>
-          <Panel title="Send til banken">
+          <Panel title="Send til Betalingsservice">
             <ol style={{ margin: "0 1.1rem 1rem 2.2rem", padding: 0, display: "grid", gap: ".4rem" }}>
               <li>Hent filen herunder. Den hedder <b>{r.fileName}</b>.</li>
-              <li>Log på jeres netbank og find <b>Betalingsservice</b>.</li>
-              <li>Vælg at sende en fil, og vælg filen. Beløbene trækkes {fmtDate(r.month)}.</li>
+              <li>Send filen til <b>Betalingsservice</b>. Den skal være fremme senest <b>{fmtDate(r.deadline)}</b>.</li>
+              <li>Beløbene trækkes {fmtDate(r.paymentDay)} hos forældre med en Betalingsservice-aftale.</li>
             </ol>
             <div className="panel-b">
               <a className="btn primary" href={`/api/billing/runs/${r.id}/file`} download>Hent fil til Betalingsservice</a>
@@ -54,7 +54,7 @@ export function BillingRun() {
           </Panel>
           <Panel title="Bagefter">
             <div className="row">
-              <span className="grow">Når pengene er trukket, så hent betalingsfilen hos banken og læg den ind. Så ved Systematikken, hvem der har betalt.</span>
+              <span className="grow">Når pengene er trukket, så hent filen med betalingsoplysninger hos Betalingsservice og læg den ind. Så ved Systematikken, hvem der har betalt.</span>
               <Link className="btn" to="/opkraevning/betalinger">Indlæs betalinger</Link>
             </div>
           </Panel>

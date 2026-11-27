@@ -23,7 +23,9 @@ Order: BS002, BS012, then per collection four BS022, one BS042 and its BS052 lin
 | BS992 delivery end | Number of sections (1), the same counts and total |
 
 - Only charges above 0 are in the file. Payers without an agreement get a payment slip from Betalingsservice.
-- Collection date = the 1st of the month.
+- Collection date = the 1st of the month. When the 1st is not a banking day, Betalingsservice moves the payment to the next banking day (its default; a creditor can choose the day before instead). The app shows that day.
+- **Delivery deadline:** the file must reach Betalingsservice by the 6th-last banking day of the month before (Vejledning for kreditorer, Nov 2026). The app shows this date. Banking days exclude weekends, public holidays, the Friday after Ascension, 5 June, 24 and 31 December.
+- **Delivery:** the institution sends the file straight to Betalingsservice, not through its bank.
 - **Serial number:** the old system always wrote `0000000016`. The new one counts up by one for each file the institution makes. Whether Betalingsservice checks it is not confirmed.
 
 ## Payment file (0602), section 0211
