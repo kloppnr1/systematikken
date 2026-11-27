@@ -43,7 +43,7 @@ const faq = [
   ["Vi bruger Tid til Børn i dag. Hvordan skifter vi?", "Skriv eller ring (se Kontakt nederst), så flytter vi jeres data over for jer. Det er også gratis."],
   ["Hvor ligger vores data?", "I EU. Hver institution ser kun sine egne data."],
   ["Hvad med CPR-numre?", "Dem gemmer vi ikke. Opkrævningen bruger et betalingsnummer pr. barn."],
-  ["Hvorfor open source?", "Så I ikke er afhængige af én leverandør. Koden er frit tilgængelig, så I eller en anden kan køre systemet videre, hvis vi en dag stopper. Og alle kan se præcis, hvordan den regner."],
+  ["Hvorfor open source?", "Så I ikke er afhængige af én leverandør. Koden er frit tilgængelig, så I eller en anden kan køre systemet videre, hvis vi en dag stopper."],
 ] as const;
 
 /** The front page for people who are not logged in: what Systematikken is, the demo, and how to start. */
