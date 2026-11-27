@@ -9,19 +9,19 @@ import puzzle from "../assets/puzzle.png";
 const features = [
   {
     icon: "list" as const, tone: "butter" as const, title: "Venteliste med tilmelding",
-    text: "Forældre skriver sig op via et link på jeres hjemmeside. I ser listen i rækkefølge, tilbyder en plads, og forældrene svarer ja eller nej via et link.",
+    text: "Forældre skriver sig op fra jeres hjemmeside. I tilbyder pladsen, de svarer via et link.",
   },
   {
     icon: "coin" as const, tone: "sage" as const, title: "Opkrævning via Betalingsservice",
-    text: "Pris, halve måneder, friplads, søskenderabat, kostordning og depositum regnes ud for jer. Godkend måneden, hent filen, og send den til Betalingsservice.",
+    text: "Friplads, søskenderabat, kostordning og halve måneder regnes ud. I godkender og sender.",
   },
   {
     icon: "check" as const, tone: "sage" as const, title: "Betalinger og bogføringsbilag",
-    text: "Læg bankens betalingsfil ind, så ved I, hvem der har betalt. Bogholderen får et bilag med tallene for måneden.",
+    text: "Se hvem der har betalt. Bogholderen får et bilag for måneden.",
   },
   {
     icon: "person" as const, tone: "pink" as const, title: "Pladser måned for måned",
-    text: "Se hvor mange vuggestue- og børnehavebørn I har, og hvornår der bliver ledigt, med børn der skal i skole regnet med.",
+    text: "Se hvornår der bliver ledige pladser i vuggestue og børnehave.",
   },
 ];
 
@@ -33,17 +33,17 @@ const record = [
 ] as const;
 
 const steps = [
-  ["Log ind", "med jeres Google- eller Microsoft-konto. Vi gemmer ingen adgangskoder."],
-  ["Opret institutionen", "og skriv jeres priser og Betalingsservice-aftale ind."],
-  ["Del tilmeldingslinket", "og indmeld de børn, der går hos jer i dag."],
+  ["Log ind", "med Google eller Microsoft."],
+  ["Opret institutionen", "med priser og Betalingsservice-aftale."],
+  ["Del tilmeldingslinket", "og indmeld jeres børn."],
 ] as const;
 
 const faq = [
-  ["Hvad koster det?", "Systematikken koster ingenting. Ikke gratis i 30 dage, men gratis, og det bliver ved med at være det. Gebyrerne for Betalingsservice betaler I som i dag."],
-  ["Vi bruger Tid til Børn i dag. Hvordan skifter vi?", "Skriv eller ring (se Kontakt nederst), så flytter vi jeres data over for jer. Det er også gratis."],
+  ["Hvad koster det?", "Ingenting. Ikke gratis i 30 dage, men gratis. Gebyrer til Betalingsservice betaler I som i dag."],
+  ["Vi bruger Tid til Børn i dag. Hvordan skifter vi?", "Kontakt os, så flytter vi jeres data gratis."],
   ["Hvor ligger vores data?", "I EU. Hver institution ser kun sine egne data."],
-  ["Hvad med CPR-numre?", "Dem gemmer vi ikke. Opkrævningen bruger et betalingsnummer pr. barn."],
-  ["Hvorfor open source?", "Så I ikke er afhængige af én leverandør. Koden er frit tilgængelig, så I eller en anden kan køre systemet videre, hvis vi en dag stopper."],
+  ["Hvad med CPR-numre?", "Dem gemmer vi ikke."],
+  ["Hvorfor open source?", "Så I ikke er afhængige af én leverandør. Alle kan køre systemet videre."],
 ] as const;
 
 /** The front page for people who are not logged in: what Systematikken is, the demo, and how to start. */
@@ -79,14 +79,13 @@ export function Landing() {
         <div className="hero-text">
           <h1>Mindre tid på administration. Mere tid til børnene.</h1>
           <p className="lead">
-            Systematikken samler venteliste, børn og forældrebetaling for private daginstitutioner ét sted.
-            Lavet til ledere, der ikke sidder ved en computer hele dagen. Og det er gratis.
+            Venteliste, børn og forældrebetaling for private daginstitutioner. Ét sted, og gratis.
           </p>
           <div className="inline">
             {demoButton}
             <Link className="btn" to="/login">Kom i gang</Link>
           </div>
-          <p className="hint">Demoen har en opdigtet institution. Ingen login, ingen tilmelding.</p>
+          <p className="hint">Ingen login, ingen tilmelding.</p>
         </div>
         <img className="hero-art" src={puzzle} alt="" />
       </section>
@@ -95,8 +94,7 @@ export function Landing() {
         <div className="record-text">
           <h2 id="record-h">Bygget på 10 års erfaring</h2>
           <p>
-            I 10 år har private daginstitutioner brugt Tid til Børn, som Systematikken afløser.
-            De største har over 120 børn. Systematikken er skrevet helt forfra på den erfaring.
+            Systematikken afløser Tid til Børn og er skrevet forfra. De største institutioner har over 120 børn.
           </p>
         </div>
         <dl className="record-stats">
@@ -143,7 +141,7 @@ export function Landing() {
 
       <section className="panel soft contact" aria-labelledby="contact-h">
         <div className="panel-h"><h2 id="contact-h">Kontakt</h2></div>
-        <p>Spørgsmål, eller vil I flytte fra Tid til Børn? Skriv eller ring til Martin.</p>
+        <p>Skriv eller ring til Martin.</p>
         <ul className="contact-list">
           <li><a href="mailto:martin@kloppconsulting.dk">martin@kloppconsulting.dk</a></li>
           <li><a href="tel:+4553687494">+45 53 68 74 94</a></li>
