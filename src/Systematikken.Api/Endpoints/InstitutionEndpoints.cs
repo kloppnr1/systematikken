@@ -25,7 +25,7 @@ public static class InstitutionEndpoints
             await db.Municipalities.OrderBy(m => m.Name)
                 .Select(m => new { m.Id, m.Name, m.Confirmed, m.CutoverYears, m.CutoverMonths, m.SchoolStartMonth }).ToListAsync());
 
-        app.MapPost("/api/institutions", async (CreateInstitution body, HttpContext ctx, AppDb db, Tenant tenant, TimeProvider clock) =>
+        app.MapPost("/api/institutions", async (CreateInstitution body, HttpContext ctx, AppDb db, Tenant tenant, TimeProvider clock, StatsService stats) =>
         {
             if (tenant.InstitutionId is not null) return Results.Conflict();
             var errors = new Errors()
@@ -60,6 +60,7 @@ public static class InstitutionEndpoints
             db.Institutions.Add(institution);
             db.Memberships.Add(new Membership { InstitutionId = institution.Id, UserId = ctx.User.UserId() });
             await db.SaveChangesAsync();
+            await stats.CountAsync(StatsService.NewInstitution);
             return Results.Ok(new { institution.Id, institution.Name, institution.Slug });
         });
 

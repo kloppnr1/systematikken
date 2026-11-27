@@ -4,6 +4,9 @@ services:
     image: ghcr.io/kloppnr1/systematikken:latest
     restart: unless-stopped
     env_file: .env
+    environment:
+      # Who may see the numbers on /tal. Separate several with commas.
+      Operator__Emails: ${OPERATOR_EMAILS:-martin@kloppconsulting.dk}
     volumes:
       - ./data:/data
 

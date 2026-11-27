@@ -17,6 +17,7 @@ public sealed class ApiFactory(bool demo = false) : WebApplicationFactory<Progra
         builder.UseEnvironment("Testing");
         builder.UseSetting("DataDirectory", _dir);
         builder.UseSetting("Auth:DevLogin", "true");
+        builder.UseSetting("Operator:Emails", "drift@systematikken.dk, anden@systematikken.dk");
         if (demo) builder.UseSetting("Demo:Enabled", "true");
     }
 

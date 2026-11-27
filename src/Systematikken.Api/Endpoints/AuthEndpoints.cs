@@ -21,13 +21,17 @@ public static class AuthEndpoints
             return Results.Challenge(props, [provider]);
         });
 
-        auth.MapGet("/callback", async (string? returnUrl, SignInManager<AppUser> signIn, UserManager<AppUser> users) =>
+        auth.MapGet("/callback", async (string? returnUrl, SignInManager<AppUser> signIn, UserManager<AppUser> users, Services.StatsService stats) =>
         {
             var info = await signIn.GetExternalLoginInfoAsync();
             if (info is null) return Results.Redirect("/login?fejl=afbrudt");
 
             var result = await signIn.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: true, bypassTwoFactor: true);
-            if (result.Succeeded) return Results.Redirect(Safe(returnUrl));
+            if (result.Succeeded)
+            {
+                await stats.CountAsync(Services.StatsService.Login);
+                return Results.Redirect(Safe(returnUrl));
+            }
 
             var email = info.Principal.FindFirstValue(ClaimTypes.Email);
             if (string.IsNullOrEmpty(email)) return Results.Redirect("/login?fejl=email");
@@ -37,6 +41,7 @@ public static class AuthEndpoints
 
             await users.AddLoginAsync(user, info);
             await signIn.SignInAsync(user, isPersistent: true);
+            await stats.CountAsync(Services.StatsService.Login);
             return Results.Redirect(Safe(returnUrl));
         });
 
@@ -68,7 +73,7 @@ public static class AuthEndpoints
         });
 
         // Who am I, and what can I do next. Answers for anonymous users too, so the app knows to show the login.
-        app.MapGet("/api/me", async (HttpContext ctx, SignInManager<AppUser> signIn, UserManager<AppUser> users, IConfiguration config, AppDb db, Tenant tenant, TimeProvider clock) =>
+        app.MapGet("/api/me", async (HttpContext ctx, SignInManager<AppUser> signIn, UserManager<AppUser> users, IConfiguration config, AppDb db, Tenant tenant, TimeProvider clock, Services.StatsService stats) =>
         {
             var providers = (await signIn.GetExternalAuthenticationSchemesAsync()).Select(s => new { s.Name, s.DisplayName }).ToList();
             var devLogin = config.GetValue<bool>("Auth:DevLogin");
@@ -88,7 +93,7 @@ public static class AuthEndpoints
 
             var user = await users.GetUserAsync(ctx.User);
             var name = string.IsNullOrWhiteSpace(user?.DisplayName) ? email : user.DisplayName;
-            return Results.Ok(new { signedIn = true, email, name, institution, invitations, providers, devLogin, demo });
+            return Results.Ok(new { signedIn = true, email, name, institution, invitations, providers, devLogin, demo, @operator = stats.IsOperator(email) });
         }).AllowAnonymous();
     }
 

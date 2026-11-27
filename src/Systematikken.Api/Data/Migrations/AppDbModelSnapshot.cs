@@ -430,6 +430,34 @@ namespace Systematikken.Api.Data.Migrations
                     b.ToTable("Children");
                 });
 
+            modelBuilder.Entity("Systematikken.Api.Data.DailyCount", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Count")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateOnly>("Day")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Source")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Day", "Name", "Source")
+                        .IsUnique();
+
+                    b.ToTable("DailyCounts");
+                });
+
             modelBuilder.Entity("Systematikken.Api.Data.Institution", b =>
                 {
                     b.Property<Guid>("Id")

@@ -10,6 +10,7 @@ export type Me = {
   providers: { name: string; displayName: string }[];
   devLogin: boolean;
   demo?: boolean;
+  operator?: boolean;
 };
 
 export const useMe = () => useQuery({ queryKey: ["me"], queryFn: () => api.get<Me>("/api/me"), staleTime: 60_000 });

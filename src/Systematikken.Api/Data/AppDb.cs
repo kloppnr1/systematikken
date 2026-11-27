@@ -23,6 +23,7 @@ public sealed class AppDb(DbContextOptions<AppDb> options, Tenant tenant) : Iden
     public DbSet<LedgerEntry> Ledger => Set<LedgerEntry>();
     public DbSet<BillingRun> BillingRuns => Set<BillingRun>();
     public DbSet<PaymentImport> PaymentImports => Set<PaymentImport>();
+    public DbSet<DailyCount> DailyCounts => Set<DailyCount>();
 
     public Guid? InstitutionId => tenant.InstitutionId;
 
@@ -39,6 +40,7 @@ public sealed class AppDb(DbContextOptions<AppDb> options, Tenant tenant) : Iden
         b.Entity<Applicant>().HasIndex(a => a.AnswerToken).IsUnique();
         b.Entity<BillingRun>().HasIndex(r => new { r.InstitutionId, r.Month }).IsUnique();
         b.Entity<PaymentImport>().HasIndex(p => new { p.InstitutionId, p.FileHash }).IsUnique();
+        b.Entity<DailyCount>().HasIndex(c => new { c.Day, c.Name, c.Source }).IsUnique();
 
         // Each institution only ever sees its own rows.
         b.Entity<Invitation>().HasQueryFilter(x => x.InstitutionId == InstitutionId);

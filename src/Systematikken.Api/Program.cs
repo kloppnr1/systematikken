@@ -69,6 +69,7 @@ builder.Services.AddSingleton(TimeProvider.System);
 builder.Services.AddScoped<BillingService>();
 builder.Services.AddScoped<PaymentService>();
 builder.Services.AddScoped<ChildService>();
+builder.Services.AddScoped<StatsService>();
 builder.Services.AddScoped<ExportService>();
 builder.Services.AddSingleton<RetentionService>();
 builder.Services.AddHostedService(sp => sp.GetRequiredService<RetentionService>());
@@ -123,6 +124,7 @@ ChildEndpoints.Map(app);
 WaitingListEndpoints.Map(app);
 BillingEndpoints.Map(app);
 PublicEndpoints.Map(app);
+StatsEndpoints.Map(app);
 
 // Every other path belongs to the React app's router.
 app.MapFallbackToFile("index.html").AllowAnonymous();

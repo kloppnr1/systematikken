@@ -66,6 +66,7 @@ export function Layout() {
             ))}
           </nav>
           {search}
+          {me.data.operator && <NavLink className="settings" to="/tal">Tal</NavLink>}
           <NavLink className="settings" to="/indstillinger">Indstillinger</NavLink>
           <button className="settings logout" onClick={logout}>Log ud</button>
           <button className="menu-button" aria-expanded={open} aria-controls="phone-menu" onClick={() => setOpen(!open)}>
@@ -83,6 +84,7 @@ export function Layout() {
             ))}
             <NavLink to="/opkraevning/betalinger">Indlæs betalinger</NavLink>
             <NavLink to="/indstillinger">Indstillinger</NavLink>
+            {me.data.operator && <NavLink to="/tal">Tal</NavLink>}
             <button className="btn link" onClick={logout}>Log ud</button>
           </nav>
         )}

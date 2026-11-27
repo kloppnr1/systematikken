@@ -27,6 +27,7 @@ import { Signup, Thanks } from "./pages/public/Signup";
 import { Answer } from "./pages/public/Answer";
 import { NotFound } from "./pages/NotFound";
 import { Landing } from "./pages/Landing";
+import { Stats } from "./pages/Stats";
 
 // systematikken.dk shows only the front page. "?forside" shows it on any address, for checking it locally.
 const isSite = ["systematikken.dk", "www.systematikken.dk"].includes(location.hostname) || new URLSearchParams(location.search).has("forside");
@@ -49,6 +50,7 @@ createRoot(document.getElementById("root")!).render(
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/start" element={<Start />} />
+            <Route path="/tal" element={<Stats />} />
             <Route path="/invitation/:token" element={<InvitationPage />} />
             <Route path="/tilmeld/:slug" element={<Signup />} />
             <Route path="/tilmeld/:slug/tak" element={<Thanks />} />

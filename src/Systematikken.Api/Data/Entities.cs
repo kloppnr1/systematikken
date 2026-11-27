@@ -241,6 +241,19 @@ public sealed class PaymentImport
     public string NotBooked { get; set; } = "";
 }
 
+/// <summary>
+/// How many visits and clicks one day had, per kind and source. Counted without cookies and without anything about
+/// the visitor, so the front page needs no cookie banner.
+/// </summary>
+public sealed class DailyCount
+{
+    public int Id { get; set; }
+    public DateOnly Day { get; set; }
+    public string Name { get; set; } = "";
+    public string Source { get; set; } = "";
+    public int Count { get; set; }
+}
+
 public static class Tokens
 {
     public static string New() => Convert.ToHexString(System.Security.Cryptography.RandomNumberGenerator.GetBytes(16)).ToLowerInvariant();

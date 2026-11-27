@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import { Tile, useTitle } from "../ui";
+import { count } from "../stats";
 import logo from "../assets/logo.png";
 import puzzle from "../assets/puzzle.png";
 
@@ -49,12 +51,13 @@ const DEMO = "https://demo.systematikken.dk";
 /** systematikken.dk: what Systematikken is, the demo, and how to start. The app itself is on app.systematikken.dk. */
 export function Landing() {
   useTitle("Gratis system til private daginstitutioner");
+  useEffect(() => count("besog"), []);
 
   return (
     <div className="landing">
       <header className="landing-top">
         <img className="brand-logo" src={logo} alt="Systematikken" />
-        <a className="btn" href={`${APP}/login`}>Log ind</a>
+        <a className="btn" href={`${APP}/login`} onClick={() => count("log-ind")}>Log ind</a>
       </header>
 
       <section className="hero">
@@ -64,8 +67,8 @@ export function Landing() {
             Venteliste, børn og forældrebetaling for private daginstitutioner. Ét sted, og gratis.
           </p>
           <div className="inline">
-            <a className="btn primary" href={DEMO}>Prøv demoen</a>
-            <a className="btn" href={`${APP}/login`}>Kom i gang</a>
+            <a className="btn primary" href={DEMO} onClick={() => count("demo")}>Prøv demoen</a>
+            <a className="btn" href={`${APP}/login`} onClick={() => count("kom-i-gang")}>Kom i gang</a>
           </div>
           <p className="hint">Ingen login, ingen tilmelding.</p>
         </div>
